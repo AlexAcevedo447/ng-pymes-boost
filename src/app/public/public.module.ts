@@ -4,6 +4,7 @@ import { LoginPageComponent } from './login/login-page/login-page.component';
 import { LoginFormComponent } from './login/login-form/login-form.component';
 import { PublicComponent } from './public.component';
 import { PublicRoutingModule } from './public-routing.module';
+import { MaterialModule } from '../material.module';
 
 
 
@@ -15,7 +16,8 @@ import { PublicRoutingModule } from './public-routing.module';
   ],
   imports: [
     CommonModule,
-    PublicRoutingModule
+    PublicRoutingModule,
+    MaterialModule
   ]
 })
 export class PublicModule { }
