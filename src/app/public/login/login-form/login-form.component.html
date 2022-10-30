@@ -1,6 +1,31 @@
-<form class="bg-grey">
-    <mat-form-field appearance="standard" color="primary">
-        <mat-label>Usuario</mat-label>
-        <input matNativeControl placeholder="Usuario">
-    </mat-form-field>
-</form>
+<!-- Form container -->
+<div class="login-form-container d-flex flex-column">
+
+    <!-- Reactive form -->
+    <form class="bg-grey form d-flex flex-column p-4 text-white" [formGroup]="loginForm"
+    (ngSubmit)="onSendData(loginForm.value)">
+
+        <!-- Form title -->
+        <legend matDialogTitle>Log In Pymes Boost</legend>
+
+        <!-- Email form input -->
+        <mat-form-field appearance="fill" color="accent" class="mat-input">
+            <mat-label>User email</mat-label>
+            <input matNativeControl formControlName="email" placeholder="User email" type="email">
+        </mat-form-field>
+
+        <!-- Password form input -->
+        <mat-form-field appearance="fill" color="accent" class="mat-input">
+            <mat-label>Password</mat-label>
+            <input matNativeControl formControlName="password" placeholder="Password" [type]="passType()">
+
+            <!-- Password visibility icon -->
+            <mat-icon matSuffix (click)="switchVisibility()">{{visibility ? 'visibility_off':'visibility'}}</mat-icon>
+        </mat-form-field>
+
+        <!-- Submitter button -->
+        <div class="button-block">
+            <button mat-raised-button type="submit" color="accent" [disabled]="loginForm.invalid">Log In</button>
+        </div>
+    </form>
+</div>
