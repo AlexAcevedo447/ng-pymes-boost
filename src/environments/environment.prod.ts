@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApiUrl: "https://pymes-boost.herokuapp.com/"
+  baseApiUrl: "https://pymes-boost.herokuapp.com/api/"
 };
