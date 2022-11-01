@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { delay } from 'rxjs/operators'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from 'src/app/core/lib/interfaces/entity.interface';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,7 +13,7 @@ export class LoginFormComponent implements OnInit {
   loginForm:FormGroup;
   visibility:boolean = false;
 
-  constructor(private _fb:FormBuilder) { 
+  constructor(private _fb:FormBuilder, private _authService:AuthService) { 
     //Building form
     this.loginForm =  this._fb.group({
       //Controls available in this form
@@ -27,8 +30,11 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   //Sends user data to backend
-  onSendData(values:any):void{
-    console.log(values)
+  onSendData(values:User):void{
+    this._authService.Login(values).pipe(delay(5000)).subscribe((permission)=>{
+      console.log(permission);
+      localStorage.setItem("token",permission.data.token);
+    })
   }
 
   //Show/Hide password function
